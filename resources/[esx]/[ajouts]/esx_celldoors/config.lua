@@ -1,5 +1,5 @@
 Config = {}
-Config.Locale = 'fr'
+Config.Locale = 'pl'
 
 Config.DoorList = {
 
@@ -94,7 +94,7 @@ Config.DoorList = {
 		textCoords = {x = 452.0, y = -1001.00, z = 25.77},
 		authorizedJobs = { 'police' },
 		locked = true,
-		distance = 8.0
+		distance = 5.0
 	},
 	{
 		objName = 'gabz_mrpd_garage_door',
@@ -102,7 +102,7 @@ Config.DoorList = {
 		textCoords = {x = 431.0, y = -1001.00, z = 25.77},
 		authorizedJobs = { 'police' },
 		locked = true,
-		distance = 8.0
+		distance = 5.0
 	},
 	--Parking - Słupki
 	--{
