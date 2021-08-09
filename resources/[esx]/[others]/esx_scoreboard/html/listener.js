@@ -3,19 +3,23 @@ var visable = false;
 $(function () {
 	window.addEventListener('message', function (event) {
 
+		if (event.data.action == "updatePraca"){
+			$('#praca').html(event.data.praca);
+		}
+
 		switch (event.data.action) {
 			case 'toggle':
 				if (visable) {
-					$('#wrap').fadeOut();
+					$('#wrap').hide();
 				} else {
-					$('#wrap').fadeIn();
+					$('#wrap').show();
 				}
 
 				visable = !visable;
 				break;
 
 			case 'close':
-				$('#wrap').fadeOut();
+				$('#wrap').hide();
 				visable = false;
 				break;
 
@@ -24,8 +28,9 @@ $(function () {
 				if (event.data.state) {
 					$('td:nth-child(2),th:nth-child(2)').show();
 					$('td:nth-child(5),th:nth-child(5)').show();
-					$('td:nth-child(8),th:nth-child(8)').show();
-					$('td:nth-child(11),th:nth-child(11)').show();
+				} else {
+					$('td:nth-child(2),th:nth-child(2)').hide();
+					$('td:nth-child(5),th:nth-child(5)').hide();
 				}
 
 				break;
@@ -37,19 +42,14 @@ $(function () {
 
 				$('#ems').html(jobs.ems);
 				$('#police').html(jobs.police);
-				$('#taxi').html(jobs.taxi);
+				if(jobs.taxi == 0){
+					$('#taxi').html('NPC');
+				}else{
+					$('#taxi').html(jobs.taxi);
+				}
 				$('#mechanic').html(jobs.mechanic);
-				/* $('#slaughterer').html(jobs.slaughterer);
-				$('#fueler').html(jobs.fueler);
-				$('#lumberjack').html(jobs.lumberjack);
-				$('#tailor').html(jobs.tailor); */
-				$('#reporter').html(jobs.reporter);
-				/* $('#miner').html(jobs.miner); */
-				$('#estate').html(jobs.estate);
-				$('#cardeal').html(jobs.cardeal);
-				$('#arma').html(jobs.arma);
-				$('#stato').html(jobs.stato);
-				$('#unemployed').html(jobs.unemployed);
+				$('#cardealer').html(jobs.cardealer);
+				$('#safj').html(jobs.safj);
 				break;
 
 			case 'updatePlayerList':
@@ -88,13 +88,13 @@ $(function () {
 
 function applyPingColor() {
 	$('#playerlist tr').each(function () {
-		$(this).find('td:nth-child(3),td:nth-child(6),td:nth-child(9),td:nth-child(12)').each(function () {
+		$(this).find('td:nth-child(3),td:nth-child(6)').each(function () {
 			var ping = $(this).html();
 			var color = 'green';
 
-			if (ping > 150 && ping < 300) {
+			if (ping > 50 && ping < 80) {
 				color = 'orange';
-			} else if (ping >= 300) {
+			} else if (ping >= 80) {
 				color = 'red';
 			}
 
@@ -113,14 +113,9 @@ function updatePing(players) {
 				$(this).find('td:nth-child(2):contains(' + element.id + ')').each(function () {
 					$(this).parent().find('td').eq(2).html(element.ping);
 				});
+
 				$(this).find('td:nth-child(5):contains(' + element.id + ')').each(function () {
 					$(this).parent().find('td').eq(5).html(element.ping);
-				});
-				$(this).find('td:nth-child(8):contains(' + element.id + ')').each(function () {
-					$(this).parent().find('td').eq(8).html(element.ping);
-				});
-				$(this).find('td:nth-child(11):contains(' + element.id + ')').each(function () {
-					$(this).parent().find('td').eq(11).html(element.ping);
 				});
 			});
 		}

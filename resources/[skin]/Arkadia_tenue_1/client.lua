@@ -67,7 +67,3 @@ AddEventHandler('esx_tenues:settenueprison', function()
 	GUI.Time = GetGameTimer()
 
 end)
-
----------------------------------
---- Copyright by ikNox#6088 ---
----------------------------------

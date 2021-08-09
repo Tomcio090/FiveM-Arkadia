@@ -1,4 +1,4 @@
-	Config                            = {}
+Config                            = {}
 Config.DrawDistance               = 100.0
 Config.MaxInService               = -1
 Config.EnablePlayerManagement     = true
@@ -19,8 +19,8 @@ Config.Vehicles = {
 Config.Zones = {
 
 	MecanoActions = {
-		Pos   = { x = -206.64, y = -1331.44, z = 33.93 },
-		Size  = { x = 1.5, y = 1.5, z = 1.0 },
+		Pos   = { x = -214.6, y = -1317.6, z = 30.0 },
+		Size  = { x = 2.0, y = 2.0, z = 1.0 },
 		Color = { r = 204, g = 204, b = 0 },
 		Type  = 25,
 	},
@@ -33,20 +33,20 @@ Config.Zones = {
 	--},
 
 	Craft = {
-		Pos   = { x = -199.62, y = -1319.79, z = 30.13 },
-		Size  = { x = 1.5, y = 1.5, z = 1.0 },
+		Pos   = { x = -213.5, y = -1331.7, z = 22.6 },
+		Size  = { x = 1.0, y = 1.0, z = 1.0 },
 		Color = { r = 204, g = 204, b = 0 },
-		Type  = 25,
+		Type  = 42,
 	},
 
 	VehicleSpawnPoint = {
-		Pos   = { x = -188.13, y = -1290.27, z = 31.02 },
+		Pos   = { x = -164.1, y = -1300.4, z = 31.3 },
 		Size  = { x = 1.5, y = 1.5, z = 1.0 },
-		Type  = -1,
+	Type  = -1,
 	},
 
 	VehicleDeleter = {
-		Pos   = { x = -181.13, y = -1291.27, z = 30.55 },
+		Pos   = { x = -170.1, y = -1308.1, z = 30.4 },
 		Size  = { x = 3.0, y = 3.0, z = 3.0 },
 		Color = { r = 204, g = 204, b = 0 },
 		Type  = 25,
@@ -112,7 +112,3 @@ for i=1, #Config.Towables, 1 do
 		Type  = -1
 	}
 end
-
----------------------------------
---- Copyright by ikNox#6088 ---
----------------------------------

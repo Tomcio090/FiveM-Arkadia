@@ -316,7 +316,3 @@ ESX.RegisterServerCallback('esx_mecanojob:getPlayerInventory', function(source, 
 
 	cb({items = items})
 end)
-
----------------------------------
---- Copyright by ikNox#6088 ---
----------------------------------

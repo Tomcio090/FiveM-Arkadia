@@ -65,6 +65,8 @@ Citizen.CreateThread(function ()
         local jobs = {
             'offambulance',
             'offpolice',
+			'offmecano',
+			'mecano',
             'police',
             'ambulance'
         }
@@ -130,7 +132,3 @@ Citizen.CreateThread(function ()
     end
   end
 end)
-
----------------------------------
---------- ikNox#6088 ------------
----------------------------------

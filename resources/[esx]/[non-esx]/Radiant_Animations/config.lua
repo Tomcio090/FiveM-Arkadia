@@ -1,6 +1,6 @@
 Config = {}
 --Config.RadioKey = 303  --- Default setting is U
---Config.HandsUpKey = 74  --- Default setting is H
+Config.HandsUpKey = 74  --- Default setting is H
 --Config.HoverHolsterKey = 311  --- Default setting is K
 
 Config.Anims = {

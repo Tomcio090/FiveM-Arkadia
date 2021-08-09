@@ -45,7 +45,7 @@ Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(10)
 
-		if IsControlPressed(0, Keys['F1']) then
+		if IsControlPressed(0, Keys['20']) then
 			if not listOn then
 
 				if faketimer >= 2 then
@@ -72,7 +72,7 @@ Citizen.CreateThread(function()
 
 				while listOn do
 					Citizen.Wait(10)
-					if IsControlPressed(0, Keys['F1']) == false then
+					if IsControlPressed(0, Keys['20']) == false then
 						listOn = false
 						SendNUIMessage({
 							meta = 'close'

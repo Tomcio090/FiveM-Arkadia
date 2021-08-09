@@ -13,7 +13,7 @@ end
 
 local Queue = {}
 -- EDIT THESE IN SERVER.CFG + OTHER OPTIONS IN CONFIG.LUA
-Queue.MaxPlayers = GetConvarInt("sv_maxclients", 80)
+Queue.MaxPlayers = GetConvarInt("sv_maxclients", 64)
 Queue.Debug = GetConvar("sv_debugqueue", "true") == "true" and true or false
 Queue.DisplayQueue = GetConvar("sv_displayqueue", "true") == "true" and true or false
 Queue.InitHostName = GetConvar("sv_hostname")
@@ -54,7 +54,7 @@ end
 
 function Queue:DebugPrint(msg)
     if Queue.Debug then
-        msg = "^3QUEUE: ^0" .. tostring(msg) .. "^7"
+        msg = "^3Kolejka: ^0" .. tostring(msg) .. "^7"
         print(msg)
     end
 end
@@ -214,7 +214,7 @@ function Queue:AddToQueue(ids, connectTime, name, src, deferrals)
             end
 
             if _pos then
-                Queue:DebugPrint(string_format("%s[%s] wa été placé %d/%d dans la queue prioritaire", tmp.name, ids[1], _pos, queueCount))
+                Queue:DebugPrint(string_format("%s[%s] został umieszczony %d/%d w kolejce priorytetowej", tmp.name, ids[1], _pos, queueCount))
                 break
             end
         end
@@ -222,7 +222,7 @@ function Queue:AddToQueue(ids, connectTime, name, src, deferrals)
 
     if not _pos then
         _pos = Queue:GetSize() + 1
-        Queue:DebugPrint(string_format("%s[%s] a été placé %d/%d dans la queue", tmp.name, ids[1], _pos, queueCount))
+        Queue:DebugPrint(string_format("%s[%s] został umiesczony %d/%d w kolejce", tmp.name, ids[1], _pos, queueCount))
     end
 
     table_insert(queueList, _pos, tmp)
@@ -309,7 +309,7 @@ function Queue:AddToConnecting(ids, ignorePos, autoRemove, done)
         done(Config.Language.connectingerr)
         Queue:RemoveFromConnecting(ids)
         Queue:RemoveFromQueue(ids)
-        Queue:DebugPrint("Le joueur n'a pas pu être ajouté à la liste de connexion")
+        Queue:DebugPrint("Nie można dodać gracza do kolejki")
     end
 
     local connList = Queue:GetConnectingList()
@@ -356,7 +356,7 @@ function Queue:AddPriority(id, power, temp)
             if _id and type(_id) == "string" and power and type(power) == "number" then
                 Queue:GetPriorityList()[_id] = power
             else
-                Queue:DebugPrint("Erreur lors de l'ajout d'un ID de priorité, données non valides transmises")
+                Queue:DebugPrint("Błąd podczas dodawania identyfikatora priorytetu, przesyłanie nieprawidłowych danych")
                 return false
             end
         end
@@ -509,10 +509,10 @@ local function playerConnect(name, setKickReason, deferrals)
         if reason then
             -- prevent joining
             allow = false
-            done(reason and tostring(reason) or "On vous a empêché de rejoindre")
+            done(reason and tostring(reason) or "Nie możesz dołączyć")
             Queue:RemoveFromQueue(ids)
             Queue:RemoveFromConnecting(ids)
-            Queue:DebugPrint(string_format("%s[%s] a été empêché de se joindre à nous, Raison : %s", name, ids[1], reason))
+            Queue:DebugPrint(string_format("%s[%s] nie możesz dolączyć na serwer z powodu: %s", name, ids[1], reason))
             CancelEvent()
             return
         end
@@ -550,7 +550,7 @@ local function playerConnect(name, setKickReason, deferrals)
     if Queue:IsInQueue(ids) then
         rejoined = true
         Queue:UpdatePosData(src, ids, deferrals)
-        Queue:DebugPrint(string_format("%s[%s] a rejoint la file d'attente après avoir annulé", name, ids[1]))
+        Queue:DebugPrint(string_format("%s[%s] dolączenie do kolejki anulowane", name, ids[1]))
     else
         Queue:AddToQueue(ids, connectTime, name, src, deferrals)
 
@@ -578,7 +578,7 @@ local function playerConnect(name, setKickReason, deferrals)
         if not added then CancelEvent() return end
 
         done()
-        Queue:DebugPrint(name .. "[" .. ids[1] .. "] se connecte au serveur")
+        Queue:DebugPrint(name .. "[" .. ids[1] .. "] polącz się z serwerem")
 
         return
     end
@@ -607,8 +607,8 @@ local function playerConnect(name, setKickReason, deferrals)
         end
 
         if not data or not data.deferrals or not data.source or not pos then
-            remove("[Queue] Supprimée de la file d'attente, les données de la file d'attente sont invalides :(")
-            Queue:DebugPrint(tostring(name .. "[" .. ids[1] .. "] a été retiré de la file d'attente parce qu'ils avaient des données invalides"))
+            remove("[MisiaczkoweRP-Kolejka] Usunięto cię z kolejki z powodu::(")
+            Queue:DebugPrint(tostring(name .. "[" .. ids[1] .. "] zawiera nie prawidłowe dane"))
             return
         end
 
@@ -616,8 +616,8 @@ local function playerConnect(name, setKickReason, deferrals)
         if not endPoint then data.timeout = data.timeout + 0.5 else data.timeout = 0 end
 
         if data.timeout >= Config.QueueTimeOut and os_time() - connectTime > 5 then
-            remove("[Queue] Supprimée en raison d'un TimeOut")
-            Queue:DebugPrint(name .. "[" .. ids[1] .. "] a été retiré de la file d'attente parce qu'il n'y avait plus de temps d'attente")
+            remove("[MisiaczkoweRP-Kolejka] Timeout")
+            Queue:DebugPrint(name .. "[" .. ids[1] .. "] zbyt długi czas oczekiwania na dołączenie")
             return
         end
 
@@ -639,7 +639,7 @@ local function playerConnect(name, setKickReason, deferrals)
             if Config.EnableGrace then Queue:AddPriority(ids[1], Config.GracePower, Config.GraceTime) end
 
             Queue:RemoveFromQueue(ids)
-            Queue:DebugPrint(name .. "[" .. ids[1] .. "] se connecte au serveur")
+            Queue:DebugPrint(name .. "[" .. ids[1] .. "] połącz się z serwerem")
             return
         end
 
@@ -676,7 +676,7 @@ Citizen.CreateThread(function()
     
             if ((data.timeout >= 300 and not endPoint) or data.timeout >= Config.ConnectTimeOut) and data.source ~= "debug" and os_time() - data.firstconnect > 5 then
                 remove(data)
-                Queue:DebugPrint(data.name .. "[" .. data.ids[1] .. "] a été retiré de la file d'attente de connexion parce qu'il a TimeOut.")
+                Queue:DebugPrint(data.name .. "[" .. data.ids[1] .. "] Timeout.")
             else
                 i = i + 1
             end

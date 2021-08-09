@@ -47,13 +47,13 @@ Config.ShowTemp = true
 
 -- simple localization
 Config.Language = {
-    joining = "\xF0\x9F\x8E\x89Connexion en cours...",
-    connecting = "\xE2\x8F\xB3Connexion...",
-    idrr = "\xE2\x9D\x97[AltisCity-Queue] Erreur: Je n'ai pas pu récupérer vos identifiants, essayez de redémarrer.",
-    err = "\xE2\x9D\x97[AltisCity-Queue] Il y a eu une erreur",
-    pos = "\xF0\x9F\x90\x8CVous êtes %d/%d dans la file \xF0\x9F\x95\x9C%s",
-    connectingerr = "\xE2\x9D\x97[AltisCity-Queue] Erreur: Erreur lors de l'ajout à la liste de connexion",
-    timedout = "\xE2\x9D\x97[AltisCity-Queue] Erreur: Timed out?",
-    wlonly = "\xE2\x9D\x97[AltisCity-Queue] Vous devez être sur la liste blanche pour rejoindre ce serveur",
-    steam = "\xE2\x9D\x97 [AltisCity-Queue] Erreur: Steam doit être en marche."
+    joining = "\xF0\x9F\x8E\x89Łączenie...",
+    connecting = "\xE2\x8F\xB3Logowanie...",
+    idrr = "\xE2\x9D\x97[MisiaczkoweRP-Kolejka] Błąd: nie mogę pobrać Twoich danych logowania, spróbuj uruchomić ponownie.",
+    err = "\xE2\x9D\x97[MisiaczkoweRP-Kolejka] Tu był był błąd",
+    pos = "\xF0\x9F\x90\x8CJesteś %d/%d w kolejce \xF0\x9F\x95\x9C%s",
+    connectingerr = "\xE2\x9D\x97[MisiaczkoweRP-Kolejka] Błąd: Błąd podczas dodawania do listy połączeń",
+    timedout = "\xE2\x9D\x97[MisiaczkoweRP-Kolejka] Błąd: Timeout",
+    wlonly = "\xE2\x9D\x97[MisiaczkoweRP-Kolejka] Musisz posiadać Whitelistt, aby dolączyć na serwer",
+    steam = "\xE2\x9D\x97 [MisiaczkoweRP-Kolejka] Aby wejść na serwer musisz mieć uruchomionego stema"
 }

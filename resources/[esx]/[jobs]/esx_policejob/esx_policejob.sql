@@ -1,5 +1,3 @@
-USE `essentialmode`;
-
 INSERT INTO `addon_account` (name, label, shared) VALUES
 	('society_police', 'Police', 1)
 ;
@@ -17,11 +15,22 @@ INSERT INTO `jobs` (name, label) VALUES
 ;
 
 INSERT INTO `job_grades` (job_name, grade, name, label, salary, skin_male, skin_female) VALUES
-	('police',0,'recruit','Recrue',20,'{}','{}'),
-	('police',1,'officer','Officier',40,'{}','{}'),
-	('police',2,'sergeant','Sergent',60,'{}','{}'),
-	('police',3,'lieutenant','Lieutenant',85,'{}','{}'),
-	('police',4,'boss','Commandant',100,'{}','{}')
+	('police',0,'kadet','Kadet',1000,'{}','{}'),
+	('police',1,'OficerI','Oficer I',1200,'{}','{}'),
+	('police',2,'OficerII','Oficer II',1500,'{}','{}'),
+	('police',3,'OficerIII','Oficer III',1700,'{}','{}'),
+	('police',4,'OficerIIII','Oficer III+I',2000,'{}','{}'),
+	('police',5,'sierzantI','Sierzant I',2500,'{}','{}'),
+	('police',6,'sierzantII','Sierzant II',3000,'{}','{}'),
+	('police',7,'porucznikI','Porucznik I',3200,'{}','{}'),
+	('police',8,'porucznikII','Porucznik II',3500,'{}','{}'),
+	('police',9,'kapitanI','Kapitan I',3800,'{}','{}'),
+	('police',10,'kapitanII','Kapitan II',4000,'{}','{}'),
+	('police',11,'kapitanIII','Kapitan III',4200,'{}','{}'),
+	('police',12,'boss','Komendant',4500,'{}','{}'),
+	('police',13,'boss','Zast. Szefa',5000,'{}','{}'),
+	('police',14,'boss','Asyst. Szefa',5500,'{}','{}'),
+	('police',15,'boss','Szef LSPD',6000,'{}','{}')
 ;
 
 CREATE TABLE `fine_types` (

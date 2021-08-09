@@ -9,15 +9,20 @@ INSERT INTO `addon_inventory` (name, label, shared) VALUES
 ;
 
 INSERT INTO `jobs` (name, label) VALUES
-	('mecano', 'Mécano')
+	('mecano', 'LSC')
 ;
 
 INSERT INTO `job_grades` (job_name, grade, name, label, salary, skin_male, skin_female) VALUES
-	('mecano',0,'recrue','Recrue',12,'{}','{}'),
-	('mecano',1,'novice','Novice',24,'{}','{}'),
-	('mecano',2,'experimente','Experimente',36,'{}','{}'),
-	('mecano',3,'chief',"Chef d\'équipe",48,'{}','{}'),
-	('mecano',4,'boss','Patron',0,'{}','{}')
+	('mecano',0,'rekrut','Rekrut',2000,'{}','{}'),
+	('mecano',1,'mlodszym','Mlodszy Mechanik',2250,'{}','{}'),
+	('mecano',2,'mechanik','Mechanik',2500,'{}','{}'),
+	('mecano',3,'smechanik',"Starszy Mechanik",3000,'{}','{}'),
+	('mecano',4,'fachowiec','Fachowiec',3250,'{}','{}'),
+	('mecano',5,'majster','Majster',3500,'{}','{}'),
+	('mecano',6,'boss','Menadzer Mechanikow',3500,'{}','{}'),
+	('mecano',7,'boss',"Zast. Szefa",4000,'{}','{}'),
+	('mecano',8,'boss','Asyst. Szefa',4500,'{}','{}'),
+	('mecano',9,'boss','Szef LSC',5000,'{}','{}')
 ;
 
 INSERT INTO `items` (name, label, `limit`) VALUES

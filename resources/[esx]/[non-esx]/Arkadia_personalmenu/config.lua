@@ -11,11 +11,11 @@ local Keys = {
 }
 
 Config = {}
-Config.Locale = 'fr'
+Config.Locale = 'en'
 
-Config.servername = "Arkadia" -- change it to you're server name
+Config.servername = "MisiaczekRP" -- change it to you're server name
 Config.doublejob = true -- enable if you're using esx double job
-Config.noclip_speed = 1.0 -- change it to change the speed in noclip
+Config.noclip_speed = 3.0 -- change it to change the speed in noclip
 
 Config.EnableJsfourIDCard = true -- enable if you're using jsfour-idcard
 

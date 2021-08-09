@@ -10,6 +10,7 @@ local Keys = {
 	["NENTER"] = 201, ["N4"] = 108, ["N5"] = 60, ["N6"] = 107, ["N+"] = 96, ["N-"] = 97, ["N7"] = 117, ["N8"] = 61, ["N9"] = 118
 }
 
+local ajdik = GetPlayerServerId(PlayerId())
 local idVisable = true
 ESX = nil
 
@@ -25,14 +26,40 @@ Citizen.CreateThread(function()
 	end)
 end)
 
+RegisterNetEvent('esx:playerLoaded')
+AddEventHandler('esx:playerLoaded', function(xPlayer)
+	local data = xPlayer
+	-- Job
+	local job = data.job
+	SendNUIMessage({action = "updatePraca", praca = job.label.." - "..job.grade_label})
+end)
+
+RegisterNetEvent('esx:setJob')
+AddEventHandler('esx:setJob', function(job)
+	SendNUIMessage({action = "updatePraca", praca = job.label.." - "..job.grade_label})
+end)
+
+Citizen.CreateThread(function()
+	while true do
+		Citizen.Wait(5000)
+		ajdik = GetPlayerServerId(PlayerId())
+		if ajdik == nil or ajdik == '' then
+			ajdik = GetPlayerServerId(PlayerId())
+		end
+	end
+end)
+
 Citizen.CreateThread(function()
 	Citizen.Wait(500)
+	ajdik = GetPlayerServerId(PlayerId())
+	if ajdik == nil or ajdik == '' then
+		ajdik = GetPlayerServerId(PlayerId())
+	end
 	SendNUIMessage({
 		action = 'updateServerInfo',
 
-		maxPlayers = GetConvarInt('sv_maxclients', 256),
-		uptime = 'unknown',
-		playTime = '00h 00m'
+		maxPlayers = GetConvarInt('sv_maxclients', 64),
+		uptime = ajdik,
 	})
 end)
 
@@ -65,35 +92,27 @@ end)
 
 RegisterNetEvent('uptime:tick')
 AddEventHandler('uptime:tick', function(uptime)
+	ajdik = GetPlayerServerId(PlayerId())
+	if ajdik == nil or ajdik == '' then
+		ajdik = GetPlayerServerId(PlayerId())
+	end
 	SendNUIMessage({
 		action = 'updateServerInfo',
-		uptime = uptime
+		uptime = ajdik
 	})
 end)
 
 function UpdatePlayerTable(connectedPlayers)
 	local formattedPlayerList, num = {}, 1
-	local ems, police, taxi, mechanic, slaughterer, fueler, lumberjack, tailor, reporter, miner, unemployed, estate, cardeal, arma, stato, players = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+	local ems, police, taxi, mechanic, cardealer, players = 0, 0, 0, 0, 0, 0, 0
 
 	for k,v in pairs(connectedPlayers) do
 
-		if num == 1 then
-			table.insert(formattedPlayerList, ('<tr><td>%s</td><td>%s</td><td>%s</td>'):format(v.name, v.id, v.ping))
-			num = 2
-		elseif num == 2 then
-			table.insert(formattedPlayerList, ('<td>%s</td><td>%s</td><td>%s</td>'):format(v.name, v.id, v.ping))
-			num = 3
-		elseif num == 3 then
-			table.insert(formattedPlayerList, ('<td>%s</td><td>%s</td><td>%s</td>'):format(v.name, v.id, v.ping))
-			num = 4
-		elseif num == 4 then
-			table.insert(formattedPlayerList, ('<td>%s</td><td>%s</td><td>%s</td></tr>'):format(v.name, v.id, v.ping))
-			num = 1
-		end
+		table.insert(formattedPlayerList, ('<tr><td>%s</td><td>%s</td><td>%s</td>'):format(v.name, v.id, v.ping))
 
 		players = players + 1
 
-		if v.job == 'ambulance' then
+		if v.job == 'fire' then
 			ems = ems + 1
 		elseif v.job == 'police' then
 			police = police + 1
@@ -101,28 +120,8 @@ function UpdatePlayerTable(connectedPlayers)
 			taxi = taxi + 1
 		elseif v.job == 'mecano' then
 			mechanic = mechanic + 1
-		--[[ elseif v.job == 'slaughterer' then
-			slaughterer = slaughterer + 1
-		elseif v.job == 'fueler' then
-			fueler = fueler + 1
-		elseif v.job == 'lumberjack' then
-			lumberjack = lumberjack + 1
-		elseif v.job == 'tailor' then
-			tailor = tailor + 1 ]]
-		elseif v.job == 'journaliste' then
-			reporter = reporter + 1
-		--[[ elseif v.job == 'miner' then
-			miner = miner + 1 ]]
-		elseif v.job == 'unemployed' then
-			unemployed = unemployed + 1
-		elseif v.job == 'realestateagent' then
-			estate = estate + 1
 		elseif v.job == 'cardealer' then
-			cardeal = cardeal + 1
-		elseif v.job == 'armeria' then
-			arma = arma + 1
-		elseif v.job == 'state' then
-			stato = stato + 1
+			cardealer = cardealer + 1
 		end
 	end
 
@@ -131,28 +130,33 @@ function UpdatePlayerTable(connectedPlayers)
 	end
 
 	SendNUIMessage({
-		action  = 'updatePlayerList',
-		players = table.concat(formattedPlayerList)
+		action = 'updatePlayerJobs',
+		jobs   = {ems = ems, police = police, taxi = taxi, mechanic = mechanic, cardealer = cardealer, player_count = players}
 	})
 
-	SendNUIMessage({
-		action = 'updatePlayerJobs',
-		jobs   = {ems = ems, police = police, taxi = taxi, mechanic = mechanic, slaughterer = slaughterer, fueler = fueler, lumberjack = lumberjack, tailor = tailor, reporter = reporter, miner = miner, unemployed = unemployed, estate = estate, cardeal = cardeal, arma = arma, stato = stato, player_count = players}
-	})
+	local pingpong = nil
+
+	ESX.TriggerServerCallback('zetka-ping', function(data)
+		local deta = data
+		pingpong = deta
+		
+		SendNUIMessage({
+			action = 'updateServerInfo',
+			playTime = pingpong
+		})
+
+	end)
+
 end
 
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)
-
+		if IsControlJustPressed(0, Keys['F1']) and IsInputDisabled(0) then
+			ToggleScoreBoard()
+		end
 		if IsControlJustReleased(0, Keys['F1']) and IsInputDisabled(0) then
 			ToggleScoreBoard()
-			Citizen.Wait(200)
-
-		-- D-pad up on controllers works, too!
-		elseif IsControlJustReleased(0, 172) and not IsInputDisabled(0) then
-			ToggleScoreBoard()
-			Citizen.Wait(200)
 		end
 	end
 end)
@@ -178,22 +182,3 @@ function ToggleScoreBoard()
 		action = 'toggle'
 	})
 end
-
-Citizen.CreateThread(function()
-	local playMinute, playHour = 0, 0
-
-	while true do
-		Citizen.Wait(1000 * 60) -- every minute
-		playMinute = playMinute + 1
-	
-		if playMinute == 60 then
-			playMinute = 0
-			playHour = playHour + 1
-		end
-
-		SendNUIMessage({
-			action = 'updateServerInfo',
-			playTime = string.format("%02dh %02dm", playHour, playMinute)
-		})
-	end
-end)

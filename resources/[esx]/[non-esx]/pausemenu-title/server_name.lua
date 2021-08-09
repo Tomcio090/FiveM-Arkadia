@@ -9,7 +9,7 @@ end
 	local name = GetPlayerName(PlayerId())
 	local id = GetPlayerServerId(PlayerId())
 	--Citizen.InvokeNative(GetHashKey("ADD_TEXT_ENTRY"), 'FE_THDR_GTAO', '~y~AltisCity ~t~| ~g~Discord: w5yD9Mp~t~ | ~b~ID: ' .. id .. ' ~t~| ~b~Nom: ~b~' .. name .. " ~t~| ~r~Joueurs: " .. #players .. "/80")
-	Citizen.InvokeNative(GetHashKey("ADD_TEXT_ENTRY"), 'FE_THDR_GTAO', "~r~Arkadia RôlePlay~s~ | Discord : ~g~discord.gg/nwq5G5U~s~ | ID: "..id.." | ~r~".. #players .." connecté(e)s")
+	Citizen.InvokeNative(GetHashKey("ADD_TEXT_ENTRY"), 'FE_THDR_GTAO', "~y~MisiaczkoweRP~s~ | Discord : ~g~https://discord.gg/f5P7UEmpmP~ | ID: "..id.." | ~r~".. #players .." polączonych")
 end
 
 Citizen.CreateThread(function()
@@ -20,11 +20,11 @@ Citizen.CreateThread(function()
 end)
 
 Citizen.CreateThread(function()
-    AddTextEntry("PM_PANE_LEAVE", "~r~Se déconnecter ~w~d'~y~Arkadia RôlePlay 😭")
+    AddTextEntry("PM_PANE_LEAVE", "Rozłącz się z ~y~MisiaczkoweRP")
 end)
 
 Citizen.CreateThread(function()
-    AddTextEntry("PM_PANE_QUIT", "~r~Quitter ~o~FiveM🐌")
+    AddTextEntry("PM_PANE_QUIT", "Wyjdź z FiveM")
 end)
 
 ---------------------------------

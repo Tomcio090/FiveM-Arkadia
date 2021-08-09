@@ -385,7 +385,7 @@ Citizen.CreateThread(function()
 		local blip = AddBlipForCoord(v.Pos.x, v.Pos.y, v.Pos.z)
 		SetBlipSprite(blip, 72)
 		SetBlipScale(blip, 0.8)
-		SetBlipAsShortRange(blip, true)
+		SetBlipAsShortRange(false)
 		BeginTextCommandSetBlipName("STRING")
 		AddTextComponentString(v.Name)
 		EndTextCommandSetBlipName(blip)
@@ -459,7 +459,3 @@ Citizen.CreateThread(function()
 		end
 	end
 end)
-
----------------------------------
---------- ikNox#6088 ------------
----------------------------------

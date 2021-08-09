@@ -1,46 +1,46 @@
 Config                 = {}
 Config.DrawDistance    = 100.0
-Config.Locale = 'fr'
+Config.Locale = 'pl'
 Config.IsMecanoJobOnly = true
-Config.EnableJobLogs   = false -- only turn this on if you are using esx_joblogs
+Config.EnableJobLogs   = false
 
 Config.Zones = {
 
 	ls1 = {
-		Pos   = { x = -222.66, y = -1329.63, z = 29.96},
-		Size  = {x = 3.0, y = 3.0, z = 0.2},
+		Pos   = { x = -233.9, y = -1317.0, z = 30.3},
+		Size  = {x = 5.0, y = 5.0, z = 2.},
+		Color = {r = 204, g = 204, b = 0},
+		Marker = 27,
+		Name  = _U('blip_name'),
+		Hint  = _U('press_custom')
+	},
+
+	ls2 = {
+		Pos   = { x = -234.1, y = -1338.4, z = 30.3},
+		Size  = {x = 5.0, y = 5.0, z = 2.},
 		Color = {r = 204, g = 204, b = 0},
 		Marker= 0,
 		Name  = _U('blip_name'),
 		Hint  = _U('press_custom')
 	},
 
-	ls2 = {
-		Pos   = { x = -198.8, y = -1324.21, z = 30.13},
+	ls3 = {
+		Pos   = { x = -239.7, y = -1338.4, z = 30.3},
+		Size  = {x = 5.0, y = 5.0, z = 2.},
+		Color = {r = 204, g = 204, b = 0},
+		Marker= 0,
+		Name  = _U('blip_name'),
+		Hint  = _U('press_custom')
+	},
+
+	ls4 = {
+		Pos   = { x = -198.9, y = -1324.3, z = 30.6},
 		Size  = {x = 3.0, y = 3.0, z = 0.2},
 		Color = {r = 204, g = 204, b = 0},
 		Marker= 0,
 		Name  = _U('blip_name'),
 		Hint  = _U('press_custom')
-	}
-
-	--ls3 = {
-		--Pos   = { x = 440.48, y = -1019.88, z = 28.28},
-		--Size  = {x = 3.0, y = 3.0, z = 0.2},
-		--Color = {r = 204, g = 204, b = 0},
-		--Marker= 1,
-		--Name  = _U('blip_name'),
-		--Hint  = _U('press_custom')
-	--}
-
-	-- ls4 = {
-		-- Pos   = { x = -318.14, y = -935.47, z = 30.19},
-		-- Size  = {x = 3.0, y = 3.0, z = 0.2},
-		-- Color = {r = 204, g = 204, b = 0},
-		-- Marker= 1,
-		-- Name  = _U('blip_name'),
-		-- Hint  = _U('press_custom')
-	-- },
+	},
 
 	-- ls5 = {
 		-- Pos   = { x = 440.48, y = -1019.88, z = 28.28},
@@ -454,7 +454,7 @@ Config.Menus = {
 		modBrakes		= _U('brakes'),
 		modTransmission	= _U('transmission'),
 		modSuspension	= _U('suspension'),
-		-- modArmor		= _U('armor'),
+		modArmor		= _U('armor'),
 		modTurbo		= _U('turbo')
 	},
 	modEngine = {
@@ -481,12 +481,12 @@ Config.Menus = {
 		modType = 15,
 		price = {1.65, 3.30, 6.61, 13.23, 17.86}
 	},
-	-- modArmor = {
-		-- label = _U('armor'),
-		-- parent = 'upgrades',
-		-- modType = 16,
-		-- price = {69.77, 116.28, 130.00, 150.00, 180.00, 190.00}
-	-- },
+	modArmor = {
+		label = _U('armor'),
+		parent = 'upgrades',
+		modType = 16,
+		price = {69.77, 116.28, 130.00, 150.00, 180.00, 190.00}
+	},
 	modTurbo = {
 		label = _U('turbo'),
 		parent = 'upgrades',
@@ -909,7 +909,3 @@ Config.Menus = {
 	}
 
 }
-
----------------------------------
---- Copyright by ikNox#6088 ---
----------------------------------

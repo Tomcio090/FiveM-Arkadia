@@ -17,7 +17,7 @@ local CurrentAction           = nil
 local CurrentActionMsg        = ''
 local CurrentActionData       = {}
 local CurrentlyTowedVehicle   = nil
-local Blips                   = {}
+local Blips                   = false
 local NPCOnJob                = false
 local NPCTargetTowable        = nil
 local NPCTargetTowableZone    = nil
@@ -932,7 +932,7 @@ Citizen.CreateThread(function()
 	SetBlipAsShortRange(blip, true)
 
 	BeginTextCommandSetBlipName("STRING")
-	AddTextComponentString("~o~Garage Mécano")
+	AddTextComponentString("LSC")
 	EndTextCommandSetBlipName(blip)
 end)
 

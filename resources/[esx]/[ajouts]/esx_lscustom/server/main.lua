@@ -81,7 +81,3 @@ ESX.RegisterServerCallback('esx_lscustom:getVehiclesPrices', function(source, cb
 		cb(Vehicles)
 	end
 end)
-
----------------------------------
---- Copyright by ikNox#6088 ---
----------------------------------

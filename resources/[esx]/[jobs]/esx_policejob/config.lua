@@ -2,19 +2,20 @@ Config                            = {}
 
 Config.DrawDistance               = 100.0
 Config.MarkerType                 = 1
-Config.MarkerSize                 = { x = 1.5, y = 1.5, z = 0.5 }
+Config.MarkerSize                 = { x = 1.5, y = 1.5, z = 1.0 }
 Config.MarkerColor                = { r = 50, g = 50, b = 204 }
 
 Config.EnablePlayerManagement     = true
-Config.EnableArmoryManagement     = true
-Config.EnableESXIdentity          = true -- enable if you're using esx_identity
-Config.EnableNonFreemodePeds      = false -- turn this on if you want custom peds
-Config.EnableLicenses             = true -- enable if you're using esx_license
+Config.EnableArmoryManagement     = false
+Config.EnableESXIdentity          = true
+Config.EnableNonFreemodePeds      = false
+Config.EnableSocietyOwnedVehicles = false
+Config.EnableLicenses             = true
 
-Config.EnableHandcuffTimer        = true -- enable handcuff timer? will unrestrain player after the time ends
-Config.HandcuffTimer              = 10 * 60000 -- 10 mins
+Config.EnableHandcuffTimer        = true
+Config.HandcuffTimer              = 10 * 60000
 
-Config.EnableJobBlip              = true -- enable blips for colleagues, requires esx_society
+Config.EnableJobBlip              = true
 
 Config.MaxInService               = -1
 Config.Locale                     = 'pl'
@@ -24,124 +25,194 @@ Config.PoliceStations = {
 	LSPD = {
 
 		Blip = {
-			Coords  = vector3(425.1, -979.5, 30.7),
+			Pos     = { x = 425.130, y = -979.558, z = 30.711 },
 			Sprite  = 60,
 			Display = 4,
 			Scale   = 1.2,
-			Colour  = 29
+			Colour  = 29,
+		},
+
+		-- https://wiki.rage.mp/index.php?title=Weapons
+		AuthorizedWeapons = {
+			{ name = 'WEAPON_NIGHTSTICK',       price = 200 },
+			{ name = 'WEAPON_COMBATPISTOL',     price = 300 },
+			{ name = 'WEAPON_ASSAULTSMG',       price = 1250 },
+			{ name = 'WEAPON_ASSAULTRIFLE',     price = 1500 },
+			{ name = 'WEAPON_PUMPSHOTGUN',      price = 600 },
+			{ name = 'WEAPON_STUNGUN',          price = 500 },
+			{ name = 'WEAPON_FLASHLIGHT',       price = 80 },
+			{ name = 'WEAPON_FIREEXTINGUISHER', price = 120 },
+			{ name = 'WEAPON_FLAREGUN',         price = 60 },
+			{ name = 'WEAPON_STICKYBOMB',       price = 250 },
+			{ name = 'GADGET_PARACHUTE',        price = 300 },
 		},
 
 		Cloakrooms = {
-			vector3(460.40, -996.60, 30.6)
+			{ x = 461.0, y = -996.5, z = 29.7 },					--Mision ROW
+			{ x = 452.600, y = -993.306, z = 29.750 },					--Paleto Bay
 		},
+		
+		Stocks = {
+			{ x = 486.0, y = -996.0, z = 29.8 },					--Mision ROW - zbrojownia
+			{ x = 474.0, y = -1005.7, z = 25.4 },					--Mision ROW - cele		
+		},
+
 
 		Armories = {
-			vector3(481.60, -996.60, 30.69)
-		},
-
-		Saisi = {
-			vector3(484.97, -996.11, 30.69)
+			{ x = 482.0, y = -996.0, z = 30.7 },					--Mision ROW
+			{ x = 460.844, y = -982.201, z = 29.689 },					--Paleto Bay
+			{ x = 460.844, y = -982.201, z = 29.689 },					--Sandy Shores
 		},
 
 		Vehicles = {
 			{
-				Spawner    = { x = 458.85, y = -992.05, z = 25.70 },
-				SpawnPoint = { x = 452.20, y = -992.0, z = 25.7 },
-				Heading    = 180.0
-			},
-
-			{
-				Spawner    = { x = 473.38, y = -1018.43, z = 28.00 },
-				SpawnPoint = { x = 475.98, y = -1021.65, z = 28.06 },
-				Heading    = 276.11
+				Spawner    = { x = 458.7, y = -993.1, z = 25.7 },		--
+				SpawnPoint = { x = 452.2, y = -993.1, z = 25.7 },		--Mission ROW - parking
+				Heading    = 360.0										--
 			},
 			{
-				Spawner    = { x = -458.20, y = 6017.77, z = 38.00 },
-				SpawnPoint = { x = -466.63, y = 6017.89, z = 31.00 },
-				Heading    = 304.14
-			}
-		},
-
-		VehicleDeleters = {
-			{ x = 450.68, y = -976.05, z = 25.7 },
-			{ x = 462.40, y = -1019.7, z = 28.104 },
-			{ x = 469.12, y = -1024.52, z = 28.20 },
-			{ x = -477.15, y = 6021.01, z = 32.00 }
+				Spawner    = { x = 473.38, y = -1018.43, z = 27.00 },	--
+				SpawnPoint = { x = 452.2, y = -993.1, z = 25.7 },		--Mission ROW - cele
+				Heading    = 360.0										--
+			},
+			{
+				Spawner    = { x = 458.7, y = -993.1, z = 25.7 },		--
+				SpawnPoint = { x = 452.2, y = -993.1, z = 25.7 },		--Vespucci
+				Heading    = 360.0										--
+			},
+			{
+				Spawner    = { x = 473.38, y = -1018.43, z = 27.00 },	--
+				SpawnPoint = { x = 452.2, y = -993.1, z = 25.7 },		--Sandy Shores
+				Heading    = 360.0										--
+			},
+			{
+				Spawner    = { x = 473.38, y = -1018.43, z = 27.00 },	--
+				SpawnPoint = { x = 452.2, y = -993.1, z = 25.7 },		--Paleto Bay
+				Heading    = 360.0										--
+			},
 		},
 
 		Helicopters = {
 			{
-				Spawner = vector3(461.1, -981.5, 43.6),
-				InsideShop = vector3(477.0, -1106.4, 43.0),
-				SpawnPoints = {
-					{ coords = vector3(449.5, -981.2, 43.6), heading = 92.6, radius = 10.0 }
-				}
+				Spawner    = { x = 464.558, y = -987.504, z = 42.691 },--
+				SpawnPoint = { x = 452.2, y = -993.1, z = 25.7 },		--Mission ROW
+				Heading    = 360.0										--
+			},
+			{
+				Spawner    = { x = 464.558, y = -987.504, z = 42.691 },--
+				SpawnPoint = { x = 452.2, y = -993.1, z = 25.7 },		--Paleto Bay
+				Heading    = 360.0										--
+			},
+			{
+				Spawner    = { x = 464.558, y = -987.504, z = 42.691 },--
+				SpawnPoint = { x = 452.2, y = -993.1, z = 25.7 },		--Sandy Shores
+				Heading    = 360.0										--
 			}
 		},
 
+		VehicleDeleters = {
+			{ x = 450.8, y = -975.6, z = 25.7 },					--Mision ROW - parking
+			{ x = 469.7, y = -1027.8, z = 28.2 },					--Mision ROW - cele
+			{ x = 462.74, y = -1014.4, z = 27.065 },					--Mision ROW - helka
+			{ x = 462.74, y = -1014.4, z = 27.065 },					--Los Santos - Vespucci
+			{ x = 462.74, y = -1014.4, z = 27.065 },					--Paleto Bay - auta
+			{ x = 462.74, y = -1014.4, z = 27.065 },					--Paleto Bay - helka
+			{ x = 462.74, y = -1014.4, z = 27.065 },					--Sandy Shores - auta
+			{ x = 462.74, y = -1014.4, z = 27.065 },					--Sandy Shores - helka
+		},
+
 		BossActions = {
-			vector3(462.13, -985.37, 30.73)
-		}
-	}
+			{ x = 462.1, y = -985.6, z = 30.7 },					--Mision ROW
+			{ x = 448.417, y = -973.208, z = 29.689 }					--Paleto Bay
+		},
+
+	},
+
 }
 
+-- https://wiki.rage.mp/index.php?title=Vehicles
 Config.AuthorizedVehicles = {
 	Shared = {
-		{ model = 'sultan', label = 'Véhicule de Formation'},
-		{ model = 'pbus', label = 'Police Prison Bus'},
-		{ model = 'policet', label = 'Fourgon de transport'},
-		{ model = 'riot', label = 'Fourgon Blindé'},
-		{ model = 'riot2', label = 'Fourgon antiémeute'}
+		{
+			model = 'police',
+			label = 'Police Cruiser'
+		},
+		{
+			model = 'pbus',
+			label = 'Police Prison Bus'
+		}
 	},
 
 	recruit = {
-		{ model = 'police', label = 'Cruiser'}
+
 	},
 
 	officer = {
-		{ model = 'police', label = 'Cruiser'},
-		{ model = 'police2', label = 'Buffalo'}
+		{
+			model = 'police3',
+			label = 'Police Interceptor'
+		}
 	},
 
 	sergeant = {
-		{ model = 'police', label = 'Cruiser'},
-		{ model = 'police2', label = 'Buffalo'},
-		{ model = 'police3', label = 'Interceptor'},
-		{ model = 'policeb', label = 'Moto'}
-	},
-
-	intendent = {
-		{ model = 'police', label = 'Cruiser'},
-		{ model = 'police2', label = 'Buffalo'},
-		{ model = 'police3', label = 'Interceptor'},
-		{ model = 'policeb', label = 'Moto'}
+		{
+			model = 'policet',
+			label = 'Police Transporter'
+		},
+		{
+			model = 'policeb',
+			label = 'Police Bike'
+		}
 	},
 
 	lieutenant = {
-		{ model = 'police', label = 'Cruiser'},
-		{ model = 'police2', label = 'Buffalo'},
-		{ model = 'police3', label = 'Interceptor'},
-		{ model = 'policeb', label = 'Moto'},
-		{ model = 'police4', label = 'Cruiser Unmarked'}
-	},
-
-	chef = {
-		{ model = 'police', label = 'Cruiser'},
-		{ model = 'police2', label = 'Buffalo'},
-		{ model = 'police3', label = 'Interceptor'},
-		{ model = 'policeb', label = 'Police Bike'},
-		{ model = 'police4', label = 'Cruiser Unmarked'},
-		{ model = 'fbi', label = 'Buffalo Unmarked'}
+		{
+			model = 'riot',
+			label = 'Police Riot'
+		},
+		{
+			model = 'fbi2',
+			label = 'FIB SUV'
+		}
 	},
 
 	boss = {
-		{ model = 'police', label = 'Cruiser'},
-		{ model = 'police2', label = 'Buffalo'},
-		{ model = 'police3', label = 'Interceptor'},
-		{ model = 'policeb', label = 'Moto'},
-		{ model = 'police4', label = 'Cruiser Unmarked'},
-		{ model = 'fbi', label = 'Buffalo Unmarked'},
-		{ model = 'fbi2', label = 'SUV Unmarked'}
+
+	}
+}
+
+Config.AuthorizedHelicopters = {
+	Shared = {
+
+	},
+
+	recruit = {
+
+	},
+
+	officer = {
+	
+	},
+
+	sergeant = {
+		{
+			model = 'polmav',
+			label = 'Hélicoptère Police'
+		}
+	},
+
+	lieutenant = {
+		{
+			model = 'polmav',
+			label = 'Hélicoptère Police'
+		}
+	},
+
+	boss = {
+		{
+			model = 'polmav',
+			label = 'Hélicoptère Police'
+		}
 	}
 }
 
@@ -324,6 +395,16 @@ Config.Uniforms = {
 			['bproof_1'] = 13,  ['bproof_2'] = 1
 		}
 	},
+	
+	bullet_unwear = {
+		male = {
+			['bproof_1'] = 0,  ['bproof_2'] = 0
+		},
+		female = {
+			['bproof_1'] = 0,  ['bproof_2'] = 0
+		}
+	},
+	
 	gilet_wear = {
 		male = {
 			['tshirt_1'] = 59,  ['tshirt_2'] = 1
